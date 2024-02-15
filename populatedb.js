@@ -1,8 +1,8 @@
 //get arguments passed on command line
 const userArgs = process.argv.slice(2);
 
-const Category = require("./models/category")
-const Item = require("./models/item")
+const Category = require("./src/models/category")
+const Item = require("./src/models/item")
 
 const items = []
 const categories = []
@@ -67,6 +67,7 @@ async function createItems() {
         itemCreate('Saxophone Reeds',categories[3], 88, 7.99),
         itemCreate('Capo', categories[0], 52, 14.89),
         itemCreate('Guitar picks(5pc)',categories[0],28,7.99),
-        itemCreate('American Vintage II 1966 Jazzmaster',categories[0],1,2499.99, `The Jazzmaster® was originally advertised as a guitar that contained "all the well-known Fender developments," where "every convenience is provided." Intended to provide a luxury playing experience and tempt jazz guitarists into playing solidbody electric guitars, this futuristic and comfort-contoured offset is about as far from a boxy archtop as can be imagined. Perhaps unsurprisingly, the guitar failed to catch on with the jazz crowd, but instead gained early acceptance with '60s surf, and later, indie-rock, alternative, and even country players.`)
+        itemCreate('American Vintage II 1966 Jazzmaster',categories[0],1,2499.99, `The Jazzmaster® was originally advertised as a guitar that contained "all the well-known Fender developments," where "every convenience is provided." Intended to provide a luxury playing experience and tempt jazz guitarists into playing solidbody electric guitars, this futuristic and comfort-contoured offset is about as far from a boxy archtop as can be imagined. Perhaps unsurprisingly, the guitar failed to catch on with the jazz crowd, but instead gained early acceptance with '60s surf, and later, indie-rock, alternative, and even country players.`),
+
     ])
 }

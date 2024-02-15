@@ -6,6 +6,19 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+      <div id="itemGrid">
+        <%items.forEach((item) => {%>
+          <div id="card">
+          <div style="display: flex;">
+            <h1><%=item.item_name%>   -   <%=item.item_category.category_name%></h1>
+          </div>
+          <h3>Price: <%=item.item_price%></h3>
+          <h3>Amount in Stock: <%=item.amount_in_stock%></h3>
+          <%if(item.item_summary){%>
+              <p><%=item.item_summary%></p>
+            <%}%>
+        </div>
+          <%}) %>
+      </div>
   </body>
 </html>
