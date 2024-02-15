@@ -60,8 +60,13 @@ async function createCategories() {
 async function createItems() {
     console.log("Creating Items")
     await Promise.all([
-        itemCreate('Accoustic Guitar', categories[0], 7, 149.99,'A great starter instrument for any aspiring musician'),
-        itemCreate('Yamaha Keyboard',categories[1], 4, 399.99, 'become a wiz at the keys!'),
-        itemCreate('John Coltranes',categories[3], 1, 250000,'Legendary John Coltranes personal sax')
+        itemCreate('Accoustic Guitar', categories[0], 7, 149.99,'A great starter instrument for any aspiring musician, easier then the electric, but still little tricky'),
+        itemCreate('Yamaha Keyboard',categories[1], 4, 399.99, '88-key weighted keyboard, comes with pedal and stand'),
+        itemCreate('Alto Saxophone kit',categories[3], 1, 150),
+        itemCreate("Saxophone Cleaning Kit", categories[3], 4,29.99),
+        itemCreate('Saxophone Reeds',categories[3], 88, 7.99),
+        itemCreate('Capo', categories[0], 52, 14.89),
+        itemCreate('Guitar picks(5pc)',categories[0],28,7.99),
+        itemCreate('American Vintage II 1966 Jazzmaster',categories[0],1,2499.99, `The Jazzmaster® was originally advertised as a guitar that contained "all the well-known Fender developments," where "every convenience is provided." Intended to provide a luxury playing experience and tempt jazz guitarists into playing solidbody electric guitars, this futuristic and comfort-contoured offset is about as far from a boxy archtop as can be imagined. Perhaps unsurprisingly, the guitar failed to catch on with the jazz crowd, but instead gained early acceptance with '60s surf, and later, indie-rock, alternative, and even country players.`)
     ])
 }
