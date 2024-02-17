@@ -12,3 +12,31 @@ exports.index = asyncHandler(async (req, res, next) =>{
   
     res.render("index", {title:'Jam House',items:allItems})
 })
+
+exports.item_detail = asyncHandler(async (req, res, next) => {
+
+})
+
+exports.item_create_get = asyncHandler(async (req, res, next) => {
+
+})
+
+exports.item_create_post = asyncHandler(async (req,res,next) => {
+
+})
+
+exports.item_delete_get = asyncHandler(async (req,res,next) => {
+
+})
+
+exports.item_delete_post = asyncHandler(async(req, res, next) => {
+    
+})
+
+exports.item_update_get = asyncHandler(async(req,res,next) => {
+
+})
+
+exports.item_update_post = asyncHandler(async (req, res, next) => {
+
+})
