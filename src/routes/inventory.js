@@ -10,7 +10,7 @@ const category_controller = require('../controllers/categoryController')
 
  router.get("/item/:id", item_controller.item_detail)
  //item routes
- router.get("/item/create", item_controller.item_create_get);
+ /* router.get("/item/create", item_controller.item_create_get);
 
  router.post("/item/create", item_controller.item_create_post);
 
@@ -35,10 +35,10 @@ router.post('/category/:id/update', category_controller.category_update_post)
 router.get('/category/:id/delete', category_controller.category_delete_get )
 
 router.post('/category/:id/delete', category_controller.category_delete_post)
+*/
+router.get('/category/:id', category_controller.category )  
 
-router.get('/category/:id', category_controller.category )
-
-router.post('/categories', category_controller.category_list )
+router.get('/categories', category_controller.categories )
 
 
 module.exports = router;
