@@ -1,11 +1,40 @@
 body {
-  background-color: #00B7FF;
-  padding: 50px;
+  background-color:#483C32;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+#header{
+  background-color:#00008B;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px black solid;
+}
+button{
+  cursor: pointer;
+  background-color: #00008B;
+  color: white;
+  border: none;
+  font-size: 25px;
+  font-weight: bold;
+}
+#formSubmit{
+  background-color: white;
+  color: black;
+}
+#formSubmit:hover{
+  background-color: #00008B;
+  color: white;
+}
+button:hover{
+  color: yellow;
+}
 a {
-  color: #00B7FF;
+  color: white;
+}
+a:hover{
+  color: yellow;
 }
 #itemGrid{
   display: grid;
