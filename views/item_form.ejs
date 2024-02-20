@@ -20,22 +20,32 @@
 
         <form style="display:flex; width:15vw; margin-left: 45%; margin-top: 10%;  flex-direction: column;" action="" method="post">
             <label style="color: white; font-size: 18px;" for="name">Item Name:</label>
-            <input type="text" name="name" required>
+            <input type="text" name="name"   required value="<%= typeof item === 'undefined' ? '' : item.item_name%>"  >
             
             <label for="category">Choose a category:</label>
-            <select name="category" id="selectCat">
+            <select name="category" id="selectCat"> 
                 <%categories.forEach((category) => {%>
+                                  <%if(item != undefined) {%>
+                    <%if(item.item_category.toString() !== category._id.toString()){%>
+                    
+                        <option value='<%=category._id%>' ><%=category.category_name%></option>
+                    <%} else{%>
+                        <option selected value='<%=category._id%>'><%=category.category_name%></option>
+                        <%}%>
+                    <%} else {%>
                     <option value='<%=category._id%>'><%=category.category_name%></option>
+                    <%}%>
                 <%})%>
             </select>
             <label style="color: white; font-size: 18px;" for="amount_in_stock">Number in Stock:</label>
-            <input type="number" name="amount_in_stock" required>
+            <input type="number" name="amount_in_stock" required  value="<%= typeof item === 'undefined' ? '' : item.amount_in_stock%>">
 
             <label style="color: white; font-size: 18px;" for="price">Item Price:</label>
-            <input type="number" step="any" name="price" required>
+            <input type="number" step="any" name="price" required value="<%= typeof item === 'undefined' ? '' : item.item_price%>" >  
             
             <p>Summary:</p>
-            <textarea name="summary" id="" cols="30" rows="10"></textarea>
+            <textarea name="summary" id="" cols="30" rows="10" value="<%= typeof item === 'undefined' ? '' : item.item_summary !== undefined ? 'item.item_summary' : ''%>" > 
+            </textarea>
 
             <button id="formSubmit" type="submit">Submit</button>
         </form>

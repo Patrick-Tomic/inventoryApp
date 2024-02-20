@@ -7,8 +7,14 @@ const category_controller = require('../controllers/categoryController')
 
 //get home page
  router.get("/", item_controller.index)
+ 
+ router.get("/item/:id/update", item_controller.item_update_get);
 
- router.get('/all_items', item_controller.all_items)
+ router.post("/item/:id/update", item_controller.item_update_post);
+
+ router.get("/item/:id/delete", item_controller.item_delete_get);
+
+ router.post("/item/:id/delete",item_controller.item_delete_post);
 
  router.get("/item/create", item_controller.item_create_get);
 
@@ -17,16 +23,13 @@ const category_controller = require('../controllers/categoryController')
  router.get("/item/:id", item_controller.item_detail)
 
 
+ router.get('/all_items', item_controller.all_items)
+
  //item routes
   
 /*
- router.get("/item/:id/delete", item_controller.item_delete_get);
+ 
 
- router.post("/item/:id/post",item_controller.item_delete_post);
-
- router.get("/item/:id/update", item_controller.item_update_get);
-
- router.post("/item/:id/update", item_controller.item_update_post);
 
 //category routes
 router.get('/category/:id/update', category_controller.category_update_get)

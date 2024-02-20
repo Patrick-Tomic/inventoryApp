@@ -84,16 +84,41 @@ asyncHandler(async (req,res,next) => {
 })
 ]
 exports.item_delete_get = asyncHandler(async (req,res,next) => {
-    res.send("NOT IMPLEMENTED: Book delete GET");
+     const item = await Item.findById(req.params.id).exec()
+
+     if(item === null) {
+        res.redirect("..//all_items")
+     } else {
+        res.render("item_delete", {
+            title:'Jame House',
+            item:item
+        })
+     }
 })
 
 exports.item_delete_post = asyncHandler(async(req, res, next) => {
-    res.send("NOT IMPLEMENTED: Book delete GET");
+      
+    await Item.deleteOne({_id:req.body.itemid}) 
+
+    res.redirect('/inventory/all_items')
+   
 })
 
 exports.item_update_get = asyncHandler(async(req,res,next) => {
-    res.send("NOT IMPLEMENTED: Book delete GET");
-})
+     const item = await Item.findById(req.params.id).sort({item_name:1, item_price:1, item_summary:1, amount_in_stock:1, item_category:1}).populate("item_category").exec()
+    
+    
+     if(item === null ) {
+        const err = new Error('Item not found')
+        err.status = 404
+        return next(err)
+     }
+     const allCategories = await Category.find().sort({category_name:1, category_id:1}).exec()
+
+  
+
+     res.render('item_form', {title:'Jam House', item:item, errors:[], categories:allCategories})
+})  
 
 exports.item_update_post = asyncHandler(async (req, res, next) => {
     res.send("NOT IMPLEMENTED: Book delete GET");
