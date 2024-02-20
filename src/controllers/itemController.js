@@ -40,7 +40,7 @@ exports.all_items = asyncHandler(async(req,res,next) => {
 
 exports.item_create_get = asyncHandler(async (req, res, next) => {
     const allCategories = await Category.find().sort({category_name:1}).exec()
-   res.render("item_form", {title:'Jame House', errors:[], categories:allCategories})
+   res.render("item_form", {title:'Jame House', errors:[], categories:allCategories, item:undefined})
 })
 
 exports.item_create_post = [
@@ -120,6 +120,49 @@ exports.item_update_get = asyncHandler(async(req,res,next) => {
      res.render('item_form', {title:'Jam House', item:item, errors:[], categories:allCategories})
 })  
 
-exports.item_update_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Book delete GET");
-})  
+exports.item_update_post = [
+    (req,res,next) => {
+        if(!Array.isArray(req.body.category)){
+            req.body.category = 
+                typeof req.body.category === 'undefined' ? [] : [req.body.category]
+        }
+        next()
+    },
+    //Validate and sanitize fields
+    body("name", "Name must not be empty").trim().isLength({min:1}).escape(),
+    body("category.*").escape(),
+    body('price','Price must not be empty').trim().isNumeric().escape(),
+    body("amount_in_stock",'Amount in stock must not be empty').trim().isNumeric().escape(),
+
+    asyncHandler(async(req,res,next) => {
+        //Extract the validation errors from a request
+        const errors = validationResult(req)
+
+        //Create a item object with escaped/trimmed data and old id
+        const item = new Item({
+            item_name: req.body.name,
+            item_category:req.body.category,
+            item_summary: req.body.summary,
+            item_price:req.body.price,
+            amount_in_stock: req.body.amount_in_stock,
+            _id:req.params.id
+        })
+
+        if(!errors.isEmpty()) {
+            //There are errors. Render from again with sanitized values/error messages
+
+            const allCategories = await Category.find().sort({category_name:1, category_id:1}).exec()
+
+            res.render("item_form", {
+                title:'Jam House',
+                categories:allCategories,
+                item:item,
+                errors:errors.array()
+            })
+        } else {
+            const updatedItem = await Item.findByIdAndUpdate(req.params.id, item, {})
+
+            res.redirect(`/inventory/item/${item._id}`)
+        }
+    })
+] 
